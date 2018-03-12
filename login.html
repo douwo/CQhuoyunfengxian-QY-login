@@ -1,154 +1,139 @@
 <!DOCTYPE html>
 <html lang="zh">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <title>loginPage</title>
-    <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            height: 100%;
-            align-items: center;
-            justify-content: center;
-            background-color: tan
-        }
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="stylesheet" href="sass/login.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<title>loginPage</title>
+		<style type="text/css">
+		</style>
+	</head>
 
-        .login-body {
-            height: 450px;
-            width: 350px;
-            background: url('img/bg.jpg') no-repeat center;
-            flex-direction: flex-direction;
-            box-shadow: 0 0 30px -5px #666;
-            border-radius: 10px;
-            background-size: 100% 100%;
-            outline: 4px solid white;
-            outline-offset: -14px;
-        }
-
-        .username,
-        .password,
-        .yanzheng {
-            margin-bottom: 10px;
-            height: 36px;
-            border: 1px solid #ccc;
-            background-color: rgba(255, 255, 255, 0.8)
-        }
-        .username input,
-        .password input,
-        .yanzheng input{
-            height: 36px;
-            width: 100%;
-            border: none;
-            outline: none;
-            background-color:transparent;
-            padding-left: 5px;
-            font-size: 14px;
-        }
-        .right-btn{
-            display: flex;
-            justify-content: center;
-        }
-        .right-btn>.login-btn {
-            outline: none;
-            border: none;
-            margin: 10px auto;
-            background-color: rgb(0, 162, 255);
-            padding: 6px 20px;
-            color: #fff;
-            box-shadow: 0 4px 0 0 rgb(0, 135, 212);
-            border-radius: 5px;
-            transition: 0.2s all;
-        }
-
-        .right-btn>.login-btn:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 0 0 rgb(0, 135, 212);
-        }
-    </style>
-</head>
-
-<body>
-    <div class="login-body">
-        <div style="width:80%;margin: 0 auto;">
-            <div style="display:flex;height: 140px;align-items:center;justify-content:center;margin-top:30px">
-                <img src="img/head.png" alt="头像" height="80px" style="box-shadow:0 0 30px -3px #aaa;border-radius:100%">
-            </div>
-            <div class="username">
-                <span style="display:flex;align-items:center;height:100%">
-                    <i class="fa fa-user" style="position: absolute;margin-left: 10px;color:#999"></i>
+	<body>
+		<header class="header">
+			<div class="system-title">
+				XXXX货运安全管理系统
+			</div>
+		</header>
+		<button class="left-btn" onclick="left()">
+			<i class="fa fa-caret-left fa-3x" style="margin-left: 7px;"></i>
+		</button>
+		<div class="login-body">
+			<div style="width:80%;margin: 0 auto;">
+				<div class="users-head-image" >
+					<img src="img/head.png" alt="头像" height="80px">
+				</div>
+				<div class="username">
+					<span class="users-input">
+                    <i class="fa fa-user icon-style"></i>
                     <img src="img/input-icon-bg.png" alt="" srcset="" height="36px" width="38px" >
                     <input id="user" type="text" placeholder="请输入用户名">
-                </span>
-            </div>
-            <div class="password">
-                <span style="display:flex;align-items:center;height:100%">
-                    <i class="fa fa-key " style="position: absolute;margin-left: 8px;color:#999"></i>
+                	</span>
+				</div>
+				<div class="password">
+					<span class="users-input">
+                    <i class="fa fa-key icon-style"></i>
                     <img src="img/input-icon-bg.png" alt="" srcset="" height="36px" width="38px" >
                     <input id="pwd" style="padding-right:20px" type="password" placeholder="请输入密码">
                     <span id="listPass" class="fa fa-eye" style="position:relative;right:3px;color:#999"></span>
-                </span>
-            </div>
-            <div class="yanzheng">
-                <span style="display:flex;align-items:center;height:100%">
-                    <i class="fa fa-bars " style="position: absolute;margin-left: 8px;color:#999"></i>
-                    <img src="img/input-icon-bg.png" alt="" srcset="" height="36px" width="38px" >
+					</span>
+				</div>
+				<div class="yanzheng">
+					<span class="users-input">
+                    <i class="fa fa-bars icon-style"></i>
+                    <img src="img/input-icon-bg.png" alt="验证码" height="36px" width="38px" >
                     <input id="yzm" type="text" style="padding-right:40px" maxlength="4" placeholder="请输入验证码">
                     <img src="img/yzm.jpg" height="30px" width="70px">
                 </span>
-            </div>
-            <div class="right-btn">
-                <button class="login-btn"><i class="fa fa-send"></i>&nbsp;登录</button>
-            </div>
-        </div>
-    </div>
-    <script>
-        $(function(){
-            $('.login-body').hide();
-            $('.login-body').show(1000);
-        })
-        var pwd = document.getElementById('pwd');
-        $('#listPass').click(function () {
-            if (pwd.type == 'password') {
-                pwd.type = 'text';
-                $('#listPass').removeClass('fa-eye');
-                $('#listPass').addClass('fa-eye-slash');
-            } else {
-                pwd.type = 'password';
-                $('#listPass').removeClass('fa-eye-slash');
-                $('#listPass').addClass('fa-eye');
-            }
-        })
-        $('#user').focus(function () {
-            $('.username').css('boxShadow', '0 0 4px 0 rgb(0, 135, 212)');
-        })
-        $('#user').blur(function () {
-            $('.username').css('boxShadow', 'none');
-        })
-        $('#pwd').focus(function () {
-            $('.password').css('boxShadow', '0 0 4px 0 rgb(0, 135, 212)');
-        })
-        $('#pwd').blur(function () {
-            $('.password').css('boxShadow', 'none');
-        })
-        $('#yzm').focus(function () {
-            $('.yanzheng').css('boxShadow', '0 0 4px 0 rgb(0, 135, 212)');
-        })
-        $('#yzm').blur(function () {
-            $('.yanzheng').css('boxShadow', 'none');
-        })
-        $('.login-btn').click(function(){
-            $('.login-btn>i').removeClass('fa-send');
-            $('.login-btn>i').addClass('fa-spinner fa-pulse');
-        })
-    </script>
-</body>
+				</div>
+				<div class="login-btn">
+					<button><i class="fa fa-send"></i>&nbsp;登录</button>
+				</div>
+			</div>
+		</div>
+		<button class="right-btn" onclick="right()">
+			<i class="fa fa-caret-right fa-3x" style="margin-left: 13px;"></i>
+		</button>
+		<footer class="footer">
+			©重庆芸享实业有限公司 2018
+		</footer>
+		<div class="main-bg">
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		<script>
+			$(function() {
+				$('.login-body').hide();
+				$('.login-body').show(1000);
+				$('.login-body').mouseover(function() {
+					$('.right-btn').css('opacity', '0');
+					$('.left-btn').css('opacity', '0');
+				})
+				$('.login-body').mouseleave(function() {
+					$('.right-btn').css('opacity', '1');
+					$('.left-btn').css('opacity', '1');
+				})
+			})
+
+			var pwd = document.getElementById('pwd');
+			var translateX_value = 0;
+
+			function right() {
+				translateX_value -= 33.33333;
+				if(translateX_value > -99) {
+					$('.main-bg').css('transform', 'translateX(' + translateX_value + '%)');
+				} else {
+					translateX_value = 0;
+					$('.main-bg').css('transform', 'translateX(' + translateX_value + '%)');
+				}
+			}
+
+			function left() {
+				translateX_value += 33.33333;
+				if(translateX_value <= 0) {
+					$('.main-bg').css('transform', 'translateX(' + translateX_value + '%)');
+				} else {
+					translateX_value = -66.66666;
+					$('.main-bg').css('transform', 'translateX(' + translateX_value + '%)');
+				}
+			}
+
+			$('#listPass').click(function() {
+				if(pwd.type == 'password') {
+					pwd.type = 'text';
+				} else {
+					pwd.type = 'password';
+				}
+				$('#listPass').toggleClass('fa-eye-slash');
+			})
+			$('#user').focus(function() {
+				$('.username').css('boxShadow', '0 0 4px 0 rgb(0, 135, 212)');
+			})
+			$('#user').blur(function() {
+				$('.username').css('boxShadow', 'none');
+			})
+			$('#pwd').focus(function() {
+				$('.password').css('boxShadow', '0 0 4px 0 rgb(0, 135, 212)');
+			})
+			$('#pwd').blur(function() {
+				$('.password').css('boxShadow', 'none');
+			})
+			$('#yzm').focus(function() {
+				$('.yanzheng').css('boxShadow', '0 0 4px 0 rgb(0, 135, 212)');
+			})
+			$('#yzm').blur(function() {
+				$('.yanzheng').css('boxShadow', 'none');
+			})
+			$('.login-btn>button').click(function() {
+				$('.login-btn>button>i').removeClass('fa-send');
+				$('.login-btn>button>i').addClass('fa-spinner fa-pulse');
+			})
+		</script>
+	</body>
 
 </html>

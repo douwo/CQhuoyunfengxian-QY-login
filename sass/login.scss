@@ -1,0 +1,195 @@
+@mixin border-radius($radius) {
+    -moz-border-radius: $radius;
+    -webkit-border-radius: $radius;
+    border-radius: $radius;
+}
+
+$header-height: 70px;
+html,
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+.icon-style {
+    position: absolute;
+    margin-left: 8px;
+    color: #999
+}
+
+.users-input {
+    display: flex;
+    align-items: center;
+    height: 100%
+}
+
+.users-head-image {
+    display: flex;
+    height: 140px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px
+}
+
+.users-head-image>img {
+    box-shadow: 0 0 30px -3px #aaa;
+    border-radius: 100%
+}
+
+.main-bg {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 300%;
+    transition: all 0.8s;
+    div:nth-child(1) {
+        float: left;
+        height: 100%;
+        width: 33.33333%;
+        background: url(../img/body-bg.jpg);
+        background-size: 100% 100%;
+    }
+    div:nth-child(2) {
+        float: left;
+        width: 33.33333%;
+        height: 100%;
+        background: url(../img/body-bg2.jpg);
+        background-size: 100% 100%;
+    }
+    div:nth-child(3) {
+        float: left;
+        height: 100%;
+        width: 33.33333%;
+        background: url(../img/body-bg3.jpg);
+        background-size: 100% 100%;
+    }
+}
+
+.login-body {
+    z-index: 99;
+    @include border-radius(10px);
+    height: 450px;
+    width: 350px;
+    background: url('../img/bg.jpg') no-repeat center;
+    flex-direction: flex-direction;
+    box-shadow: 0 0 30px -5px #666;
+    background-size: 100% 100%;
+    outline: 4px solid white;
+    outline-offset: -14px;
+}
+
+.username,
+.password,
+.yanzheng {
+    margin-bottom: 10px;
+    height: 36px;
+    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.8)
+}
+
+.username input,
+.password input,
+.yanzheng input {
+    height: 36px;
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    padding-left: 5px;
+    font-size: 14px;
+}
+
+.login-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.login-btn>button {
+    outline: none;
+    border: none;
+    margin: 10px auto;
+    background-color: rgb(0, 162, 255);
+    padding: 6px 20px;
+    color: #fff;
+    box-shadow: 0 4px 0 0 rgb(0, 135, 212);
+    border-radius: 5px;
+    transition: 0.2s all;
+    cursor: pointer;
+}
+
+.login-btn>button:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 0 rgb(0, 135, 212);
+}
+
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: $header-height;
+    background: rgba(58, 110, 165, 0.5);
+    width: 100%;
+    z-index: 2;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 30px;
+    line-height: 30px;
+    background: rgba(50, 174, 232, 0.2);
+    width: 100%;
+    text-align: center;
+    color: #eee;
+    z-index: 2;
+}
+
+.system-title {
+    padding-left: 20px;
+    font-family: "黑体";
+    font-weight: 800;
+    font-size: 34px;
+    line-height: $header-height;
+    color: #FFF;
+}
+
+button {
+    z-index: 2;
+}
+
+%change-btn {
+    position: absolute;
+    display: flex;
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    border: 1px solid #aaa;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.5s;
+    cursor: pointer;
+    outline-style: none;
+    &:hover {
+        color: rgba(255, 255, 255, 1);
+        border-color: #fff;
+    }
+}
+
+.left-btn {
+    left: 20px;
+    @extend %change-btn;
+}
+
+.right-btn {
+    right: 20px;
+    @extend %change-btn;
+}
